@@ -8,8 +8,7 @@ class EmployeeEditor extends Component {
       originalEmployee: null,
       notModified: true
     };
-    this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this)
-    this.handleChange = this.handleChange.bind(this)
+   
     this.save = this.save.bind(this)
     this.cancel = this.cancel.bind(this)
   }
@@ -23,27 +22,34 @@ class EmployeeEditor extends Component {
     })
   }
 
-  handleChange(prop, val) {
-    if ( this.state.notModified ) {
-      this.setState({ notModified: false });
+  // handleChange
+  handleChange(property,val){
+    if(this.state.notModified){
+      this.setState({
+        notModified: false
+      })
     }
-
-    var employeeCopy = Object.assign({}, this.state.employee);
-    employeeCopy[prop] = val;
-    this.setState({ employee: employeeCopy });
+    var copy = Object.assign({}, this.state.employee)
+    copy[property] = val;
+    this.setState({ employee: copy})
   }
 
-  save() {
-    this.state.originalEmployee.updateName(this.state.employee.name);
-    this.state.originalEmployee.updatePhone(this.state.employee.phone);
-    this.state.originalEmployee.updateTitle(this.state.employee.title);
-    this.setState({ notModified: true });
+  // save
+  save(){
+    this.state.originalEmployee.updateName(this.state.employee.name)
+    this.state.originalEmployee.updatePhone(this.state.employee.phone)
+    this.state.originalEmployee.updateTitle(this.state.employee.title)
+    this.setState({ notModified: true})
     this.props.refreshList();
   }
 
-  cancel() {
-    var employeeCopy = Object.assign({}, this.state.originalEmployee);
-    this.setState({ employee: employeeCopy, notModified: true });
+  // cancel
+  cancel(){
+    let copy = Object.assign({},this.state.originalEmployee)
+    this.setState({
+      employee: copy,
+      notModified: true
+    })
   }
   
   render() {
@@ -68,7 +74,7 @@ class EmployeeEditor extends Component {
           </div>
           :
           <p id="noEmployee"> No Employee Selected </p>
-        }
+        } 
        
       </div>
     )

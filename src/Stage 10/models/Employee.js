@@ -1,8 +1,6 @@
-import React, {Component} from 'react'
-
-export default class Employee extends Component{
+export default class Employee{
   // constructor
-  constructor(id,name,phone,title){
+  constructor(id,name,phone,title){   
     this.id = id;
     this.name = name;
     this.phone = phone;
@@ -16,11 +14,11 @@ export default class Employee extends Component{
 
   // updatePhone
   updatePhone(property){
-    this.phone = phone;
+    this.phone = property;
   }
 
    // updateTitle
    updateTitle(property){
-    this.Title = title;
+    this.Title = property;
    }
 }
